@@ -372,7 +372,7 @@ func schedule(db *sql.DB) {
 	}
 
 	for twf {
-		twelverows, twelveerr := db.Query("select ref_id,category,prod_name,description,mrp,base from twelvehourtable order by random();")
+		twelverows, twelveerr := db.Query("select ref_id,category,prod_name,description,mrp,base from twelvehourtable where category!=$1 order by random();", "Apparel")
 		if twelveerr != nil {
 			log.Fatal("error selecting from twelvetable", twelveerr)
 		}
